@@ -44,6 +44,21 @@ class ViewController: UIViewController,UITextFieldDelegate {
         txtStarValue?.layer.borderWidth = 0.5
         txtStarValue?.layer.borderColor = UIColor.redColor().CGColor
         view.addSubview(txtStarValue!)
+        
+        let star2 = StarReview(frame: CGRect(x: 10, y: 220, width: 220, height: 80))
+        star2.starCount = 4
+        star2.allowAccruteStars = true
+        star2.starMarginScale = 0.4
+        view.addSubview(star2)
+        
+        let star3 = StarReview(frame: CGRect(x: 250, y: 250, width: 100, height: 50))
+
+        star3.starCount = 5
+        star3.allowAccruteStars = true
+        star3.starMarginScale = 0.4
+        star3.value = 3.3
+        view.addSubview(star3)
+
     }
 
     

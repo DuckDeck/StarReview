@@ -154,7 +154,10 @@ class StarReview: UIControl {
         super.init(frame: frame)
         self.backgroundColor = UIColor.clearColor()
         self.userInteractionEnabled = true
-
+        starRadius = Float(self.frame.size.height) - Float(layer.borderWidth * 2)
+        if ratio < startReviewWidthScale{
+            starRadius = Float(self.frame.width) / startReviewWidthScale - Float(layer.borderWidth * 2)
+        }
     }
     override func drawRect(rect: CGRect) {
         //对于View的尺寸是有要求的,如果过长,那么5颗星排起来也排不满整个长度,如果太高的话,那么又占不了整个高度,如果一个星是正文形,长宽都是1的话,那么总长宽比可以是
