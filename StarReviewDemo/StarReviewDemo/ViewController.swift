@@ -18,7 +18,7 @@ class ViewController: UIViewController,UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.whiteColor()
-        star = StarReview(frame: CGRect(x: 15, y: 100, width: 200, height: 50))
+         star = StarReview(frame: CGRect(x: 15, y: 100, width: 200, height: 50))
          star?.starMarginScale = 0.4;
         star!.value = 2
         star?.starCount = 6
@@ -45,18 +45,23 @@ class ViewController: UIViewController,UITextFieldDelegate {
         txtStarValue?.layer.borderColor = UIColor.redColor().CGColor
         view.addSubview(txtStarValue!)
         
-        let star2 = StarReview(frame: CGRect(x: 10, y: 220, width: 220, height: 80))
-        star2.starCount = 4
+        let star2 = StarReview(frame: CGRect(x: 10, y: 220, width: 150, height: 70))
+        star2.starCount = 5
+        star2.value = 1
         star2.allowAccruteStars = true
-        star2.starMarginScale = 0.4
+        star2.starFillColor = UIColor.redColor()
+        star2.starBackgroundColor = UIColor.blackColor()
+        star2.starMarginScale = 0.3
         view.addSubview(star2)
         
-        let star3 = StarReview(frame: CGRect(x: 250, y: 250, width: 100, height: 50))
+        let star3 = StarReview(frame: CGRect(x: 250, y: 250, width: 150, height: 70))
 
         star3.starCount = 5
         star3.allowAccruteStars = true
-        star3.starMarginScale = 0.4
+        star3.starMarginScale = 0.5
         star3.value = 3.3
+        star3.starBackgroundColor = UIColor.lightGrayColor()
+        star3.starFillColor = UIColor.orangeColor()
         view.addSubview(star3)
 
     }
