@@ -24,28 +24,45 @@ Xcode 7.1 and iOS 8.0(the lasted swift grammar)
 
 ##How To Use It 
 *Please see these code below
-```let star = StarReview(frame: CGRect(x: 15, y: 100, width: 200, height: 50)) //init the StarReview
+```swift
+let star = StarReview(frame: CGRect(x: 15, y: 100, width: 200, height: 50)) //init the StarReview
 ```
-```star.starMarginScale = 0.3 //set the gap/star diameter scale the default value is 0.3
+```swift
+star.starMarginScale = 0.3 //set the gap/star diameter scale the default value is 0.3
 ```
-```star.value = 2 //set the StarReview init value
-```star.starCount = 5 // set the StarReview star count, the default value = 5
-```star.allowEdit = true // set the user can rate  the defalut value is true
-```star.allowAccruteStars = true //set whether use float or int to present star value
-```star.starFillColor = UIColor.orangeColor() //the star fill color
-```star.starBackgroundColor = UIColor.lightGrayColor() //the star background color
-```star.addTarget(self, action: "valueChange:", forControlEvents: UIControlEvents.ValueChanged) // add the star value change event
+```
+star.value = 2 //set the StarReview init value
+```
+```
+star.starCount = 5 // set the StarReview star count, the default value = 5
+```
+```
+star.allowEdit = true // set the user can rate  the defalut value is true
+```
+```
+star.allowAccruteStars = true //set whether use float or int to present star value
 
+```
+```
+star.starFillColor = UIColor.orangeColor() //the star fill color
+```
+```
+star.starBackgroundColor = UIColor.lightGrayColor() //the star background color
+```
+```
+star.addTarget(self, action: "valueChange:", forControlEvents: UIControlEvents.ValueChanged) // add the star value change event
+```
 *Check the demo project will help you understand more 
+
 <br>
 
-![add -DDEBUG location](https://raw.githubusercontent.com/DuckDeck/StarReview/master/StarReviewDemo/Resource/1.gif)
+![add -DDEBUG location](https://raw.githubusercontent.com/DuckDeck/StarReview/master/StarReviewDemo/StarReviewDemo/Resource/1.gif)
 <br>
 
-![add -DDEBUG location](https://raw.githubusercontent.com/DuckDeck/StarReview/master/StarReviewDemo/Resource/2.gif)
+![add -DDEBUG location](https://raw.githubusercontent.com/DuckDeck/StarReview/master/StarReviewDemo/StarReviewDemo/Resource/2.gif)
 <br>
 
-![add -DDEBUG location](https://raw.githubusercontent.com/DuckDeck/StarReview/master/StarReviewDemo/Resource/3.gif)
+![add -DDEBUG location](https://raw.githubusercontent.com/DuckDeck/StarReview/master/StarReviewDemo/StarReviewDemo/Resource/3.gif)
 
 
 ##Contact 
