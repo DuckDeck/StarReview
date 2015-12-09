@@ -55,6 +55,7 @@
 		A20DD94E1C116E7A00F690E8 /* StarReviewDemo */ = {
 			isa = PBXGroup;
 			children = (
+				A253CE8D1C17B6810014CDE1 /* Resource */,
 				A20DD94F1C116E7A00F690E8 /* AppDelegate.swift */,
 				A20DD9511C116E7A00F690E8 /* ViewController.swift */,
 				A20DD9561C116E7A00F690E8 /* Assets.xcassets */,
@@ -71,6 +72,13 @@
 			);
 			name = StarReview;
 			path = ../StarReview;
+			sourceTree = "<group>";
+		};
+		A253CE8D1C17B6810014CDE1 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Resource;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
