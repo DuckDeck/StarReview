@@ -52,6 +52,9 @@ star.starBackgroundColor = UIColor.lightGrayColor() //the star background color
 ```
 star.addTarget(self, action: "valueChange:", forControlEvents: UIControlEvents.ValueChanged) // add the star value change event
 ```
+```
+view.addSubview(star) //add the StarReview
+```
 *Check the demo project will help you understand more 
 
 <br>
