@@ -136,7 +136,7 @@ star.addTarget(self, action: "valueChange:", forControlEvents: UIControlEvents.V
 ```
 view.addSubview(star) //添加StarReview
 ```
-*Check the demo project will help you understand more 
+*参考StarReviewDemo会更好的理解StarReview怎么使用
 
 <br>
 
