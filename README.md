@@ -75,6 +75,8 @@ Any issue or problem please contact me:3421902@qq.com, I will be happy fix it
 
 
 
+#中文说明
+
 
 # StarReview
 === 
@@ -83,25 +85,25 @@ Any issue or problem please contact me:3421902@qq.com, I will be happy fix it
 StarReview是一个强大的IOS UI 工具他继承了UIControl 并提供了可定制的包含星星的VIew. 
 
 ##关键特点
-* Self-adaptive size. the view size and star count determine the star size.
-* Can add any star count.
-* Set the star fill color and background color.
-* Custom star gap.
-* Use float or int to present star value.
-* Change star value will fire event when you add target.
+*可自适配大小，星的大小由VIew的大小和星星的个数决定
+*可设定任意星星的个数
+*可设定填充颜色和背景色
+*自定义星与星之间的间距
+*可用小数或者整数来表示当前星的分数
+*改变星的值时会触发事伯，当你添加target时
 
-##Requirements 
+##系统要求 
 
-Xcode 7.1 and iOS 8.0(the lasted swift grammar)
+Xcode 7.1 and iOS 8.0(最新的Swift语法)
 
-##Installation
-`if you want to use cocopods, just pod 'StarReview'.`
-`if you want to use file, just pod copy the StarReview.swift to your project .`
+##安装
+`如果你使用cocopods, 则pod 'StarReview' 再安装即可.`
+`如果你想使用文件，直接拷贝StarReview.swift到你的项目即可`
 <br>
 
 
-##How To Use It 
-*Please see these code below
+##怎么使用
+*请参考以下代码 
 ```swift
 let star = StarReview(frame: CGRect(x: 15, y: 100, width: 200, height: 50)) //init the StarReview
 ```
