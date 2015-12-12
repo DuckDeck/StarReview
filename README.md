@@ -85,12 +85,12 @@ Any issue or problem please contact me:3421902@qq.com, I will be happy fix it
 StarReview是一个强大的IOS UI 工具他继承了UIControl 并提供了可定制的包含星星的VIew. 
 
 ##关键特点
-*可自适配大小，星的大小由VIew的大小和星星的个数决定
-*可设定任意星星的个数
-*可设定填充颜色和背景色
-*自定义星与星之间的间距
-*可用小数或者整数来表示当前星的分数
-*改变星的值时会触发事伯，当你添加target时
+* 可自适配大小，星的大小由VIew的大小和星星的个数决定
+* 可设定任意星星的个数
+* 可设定填充颜色和背景色
+* 自定义星与星之间的间距
+* 可用小数或者整数来表示当前星的分数
+* 改变星的值时会触发事伯，当你添加target时
 
 ##系统要求 
 
@@ -98,6 +98,7 @@ Xcode 7.1 and iOS 8.0(最新的Swift语法)
 
 ##安装
 `如果你使用cocopods, 则pod 'StarReview' 再安装即可.`
+<br/>
 `如果你想使用文件，直接拷贝StarReview.swift到你的项目即可`
 <br>
 
@@ -105,29 +106,29 @@ Xcode 7.1 and iOS 8.0(最新的Swift语法)
 ##怎么使用
 *请参考以下代码 
 ```swift
-let star = StarReview(frame: CGRect(x: 15, y: 100, width: 200, height: 50)) //init the StarReview
+let star = StarReview(frame: CGRect(x: 15, y: 100, width: 200, height: 50)) //初始化 StarReview
 ```
 ```swift
-star.starMarginScale = 0.3 //set the gap/star diameter scale the default value is 0.3
+star.starMarginScale = 0.3 //设置星与星的间隔长度和星星直径的比例，默认是 0.3
 ```
 ```
-star.value = 2 //set the StarReview init value
+star.value = 2 //设置 StarReview 的 value
 ```
 ```
-star.starCount = 5 // set the StarReview star count, the default value = 5
+star.starCount = 5 // 设置StarReview内星星的个数,默认是5个
 ```
 ```
-star.allowEdit = true // set the user can rate  the defalut value is true
+star.allowEdit = true // 设置是否可以允许打分，默认是允许
 ```
 ```
-star.allowAccruteStars = true //set whether use float or int to present star value
+star.allowAccruteStars = true //设置是否精确化打分，也就是说如果是精确化，就可以用小数，不然只能用整数
 
 ```
 ```
-star.starFillColor = UIColor.orangeColor() //the star fill color
+star.starFillColor = UIColor.orangeColor() //设置星星的填充颜色
 ```
 ```
-star.starBackgroundColor = UIColor.lightGrayColor() //the star background color
+star.starBackgroundColor = UIColor.lightGrayColor() //设置星星的背景色
 ```
 ```
 star.addTarget(self, action: "valueChange:", forControlEvents: UIControlEvents.ValueChanged) // add the star value change event
