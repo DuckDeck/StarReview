@@ -131,10 +131,10 @@ star.starFillColor = UIColor.orangeColor() //设置星星的填充颜色
 star.starBackgroundColor = UIColor.lightGrayColor() //设置星星的背景色
 ```
 ```
-star.addTarget(self, action: "valueChange:", forControlEvents: UIControlEvents.ValueChanged) // add the star value change event
+star.addTarget(self, action: "valueChange:", forControlEvents: UIControlEvents.ValueChanged) // 为StarReview的值改变时添加事件
 ```
 ```
-view.addSubview(star) //add the StarReview
+view.addSubview(star) //添加StarReview
 ```
 *Check the demo project will help you understand more 
 
@@ -149,5 +149,5 @@ view.addSubview(star) //add the StarReview
 ![add -DDEBUG location](https://raw.githubusercontent.com/DuckDeck/StarReview/master/StarReviewDemo/StarReviewDemo/Resource/3.gif)
 
 
-##Contact 
-Any issue or problem please contact me:3421902@qq.com, I will be happy fix it
+##和我联系
+任何问题或者BUG请直接和我联系3421902@qq.com, 我会乐于帮你解决
