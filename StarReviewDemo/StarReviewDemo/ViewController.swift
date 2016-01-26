@@ -54,7 +54,7 @@ class ViewController: UIViewController,UITextFieldDelegate {
         star2.starMarginScale = 0.3
         view.addSubview(star2)
         
-        let star3 = StarReview(frame: CGRect(x: 250, y: 250, width: 150, height: 70))
+        let star3 = StarReview(frame: CGRect(x: 150, y: 280, width: 150, height: 70))
 
         star3.starCount = 5
         star3.allowAccruteStars = true

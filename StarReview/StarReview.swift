@@ -7,31 +7,30 @@
 //
 
 import UIKit
-
-class StarReview: UIControl {
-    var starCount:Int = 5{ //可以用来打分的星星的数量
+public final class StarReview: UIControl {
+   public var starCount:Int = 5{ //可以用来打分的星星的数量
         didSet{
             maxmunValue = Float(starCount) //再设最大值
             setNeedsDisplay()
         }
     }
-    var starFillColor:UIColor = UIColor.blueColor(){ //星星的填充颜色
+    public var starFillColor:UIColor = UIColor.blueColor(){ //星星的填充颜色
         didSet{
             setNeedsDisplay()
         }
     }
-    var starBackgroundColor:UIColor = UIColor.grayColor(){
+  public var starBackgroundColor:UIColor = UIColor.grayColor(){
         didSet{
             setNeedsDisplay()
         }
     }
-    var allowEdit:Bool = true
-    var allowAccruteStars:Bool = false{
+   public var allowEdit:Bool = true
+    public var allowAccruteStars:Bool = false{
         didSet{
             setNeedsDisplay()
         }
     }
-    var starMarginScale:Float = 0.3{
+ public    var starMarginScale:Float = 0.3{
         didSet{
             if starMarginScale > 0.9
             {
@@ -43,7 +42,7 @@ class StarReview: UIControl {
             setNeedsDisplay()
         }
     }
-    var value:Float {
+   public var value:Float {
         get{
             if allowAccruteStars{
                 let index = getStarIndex()
@@ -86,12 +85,12 @@ class StarReview: UIControl {
 
         }
     }
-    var maxmunValue:Float = 5{
+   public var maxmunValue:Float = 5{
         didSet{
             setNeedsDisplay()
         }
     }
-    var minimunValue:Float = 0{
+  public  var minimunValue:Float = 0{
         didSet{
             setNeedsDisplay()
         }
@@ -146,7 +145,7 @@ class StarReview: UIControl {
     }
     
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
@@ -159,7 +158,7 @@ class StarReview: UIControl {
             starRadius = Float(self.frame.width) / startReviewWidthScale - Float(layer.borderWidth * 2)
         }
     }
-    override func drawRect(rect: CGRect) {
+    override public func drawRect(rect: CGRect) {
         //对于View的尺寸是有要求的,如果过长,那么5颗星排起来也排不满整个长度,如果太高的话,那么又占不了整个高度,如果一个星是正文形,长宽都是1的话,那么总长宽比可以是
         //所以可以计算一下应该取多少
         clipsToBounds = false
@@ -206,7 +205,7 @@ class StarReview: UIControl {
            CGContextFillRect(ctx, CGRectMake(CGFloat(offsetX), CGFloat(offsetY), CGFloat(temp), CGFloat(starRadius)))
     }
     
-    override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override public func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
         if let touch:UITouch = touches.first{
             let point = touch.locationInView(self)
             let temp = (Float(point.x) - offsetX) / (starRadius * ( 1 + starMarginScale))
@@ -220,7 +219,7 @@ class StarReview: UIControl {
         }
     }
     
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override public func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         if !allowEdit
         {
             return
@@ -237,13 +236,13 @@ class StarReview: UIControl {
            // print("starPicelValue:\(starPixelValue)")
         }
     }
-    override func addTarget(target: AnyObject?, action: Selector, forControlEvents controlEvents: UIControlEvents) {
+    override public func addTarget(target: AnyObject?, action: Selector, forControlEvents controlEvents: UIControlEvents) {
         self.target = target
         self.selector = action
         self.event = controlEvents
     }
     
-    func getStarIndex()->(Int,Int){  //判断坐标在第几个星上,如果不在星上,返回在第几个间隙上
+    private func getStarIndex()->(Int,Int){  //判断坐标在第几个星上,如果不在星上,返回在第几个间隙上
         let i = Int(starPixelValue)
         if  starPixelValue - Float(i) <= 1 / (1 + starMarginScale)
         {
