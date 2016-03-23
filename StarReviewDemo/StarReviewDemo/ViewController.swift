@@ -23,12 +23,12 @@ class ViewController: UIViewController,UITextFieldDelegate {
         star!.value = 2
         star?.starCount = 6
         star?.allowAccruteStars = true
-        star!.addTarget(self, action: "valueChange:", forControlEvents: UIControlEvents.ValueChanged)
+        star!.addTarget(self, action: #selector(ViewController.valueChange(_:)), forControlEvents: UIControlEvents.ValueChanged)
         view.addSubview(star!)
         
-        let btnBar = UIBarButtonItem(title: "换色", style: UIBarButtonItemStyle.Plain, target: self, action: "changeColor")
+        let btnBar = UIBarButtonItem(title: "换色", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(ViewController.changeColor))
         navigationItem.rightBarButtonItem = btnBar
-        btnBarLeft = UIBarButtonItem(title: "整数化", style: UIBarButtonItemStyle.Plain, target: self, action: "inter")
+        btnBarLeft = UIBarButtonItem(title: "整数化", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(ViewController.inter))
         navigationItem.leftBarButtonItem = btnBarLeft!
         lblStarLevel = UILabel(frame: CGRect(x: 0, y: 180, width: 200, height: 20))
         lblStarLevel?.textColor = UIColor.blackColor()
@@ -36,7 +36,7 @@ class ViewController: UIViewController,UITextFieldDelegate {
         slider = UISlider(frame: CGRect(x: 0, y: 200, width: UIScreen.mainScreen().bounds.width, height: 50))
         slider?.maximumValue = Float(star!.starCount)
         slider?.minimumValue = 0
-        slider?.addTarget(self, action: "sliderChangeValue:", forControlEvents: UIControlEvents.ValueChanged)
+        slider?.addTarget(self, action: #selector(ViewController.sliderChangeValue(_:)), forControlEvents: UIControlEvents.ValueChanged)
         view.addSubview(slider!)
         txtStarValue = UITextField(frame: CGRect(x: 200, y: 175, width: 100, height: 30))
         txtStarValue?.keyboardType = UIKeyboardType.DecimalPad
@@ -156,7 +156,7 @@ extension UIColor {
 func starColorComponentFrom(str:NSString,start:UInt,length:UInt)->CGFloat{
     let subStr = str.substringWithRange(NSMakeRange(Int(start), Int(length)))
     let fullHex = length == 2 ? subStr: NSString(format: "%@%@", subStr,subStr)
-    let hexComponent:UnsafeMutablePointer<UInt32> =  UnsafeMutablePointer<UInt32>()
+    let hexComponent:UnsafeMutablePointer<UInt32> =  nil
     NSScanner(string: fullHex as String).scanHexInt(hexComponent)
     return CGFloat(hexComponent.memory as UInt32) / CGFloat(255.0)
 }
