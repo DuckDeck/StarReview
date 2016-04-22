@@ -18,55 +18,68 @@ class ViewController: UIViewController,UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.whiteColor()
-         star = StarReview(frame: CGRect(x: 15, y: 100, width: 200, height: 50))
-         star?.starMarginScale = 0.4;
-        star!.value = 2
-        star?.starCount = 6
+        
+        //setup first star view
+        star                    = StarReview(frame: CGRect(x: 15, y: 100, width: 200, height: 50))
+        star?.starMarginScale   = 0.4;
+        star!.value             = 2
+        star?.starCount         = 6
         star?.allowAccruteStars = true
         star!.addTarget(self, action: #selector(ViewController.valueChange(_:)), forControlEvents: UIControlEvents.ValueChanged)
         view.addSubview(star!)
         
-        let btnBar = UIBarButtonItem(title: "换色", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(ViewController.changeColor))
-        navigationItem.rightBarButtonItem = btnBar
-        btnBarLeft = UIBarButtonItem(title: "整数化", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(ViewController.inter))
-        navigationItem.leftBarButtonItem = btnBarLeft!
-        lblStarLevel = UILabel(frame: CGRect(x: 0, y: 180, width: 200, height: 20))
+        //setup lable for present first star view's value
+        lblStarLevel            = UILabel(frame: CGRect(x: 0, y: 180, width: 200, height: 20))
         lblStarLevel?.textColor = UIColor.blackColor()
+        lblStarLevel?.text      = "分数值\(star!.value)"
         view.addSubview(lblStarLevel!)
-        slider = UISlider(frame: CGRect(x: 0, y: 200, width: UIScreen.mainScreen().bounds.width, height: 50))
+        
+        //setup slider which work in coordination with first star view
+        slider               = UISlider(frame: CGRect(x: 0, y: 200, width: UIScreen.mainScreen().bounds.width, height: 50))
         slider?.maximumValue = Float(star!.starCount)
         slider?.minimumValue = 0
         slider?.addTarget(self, action: #selector(ViewController.sliderChangeValue(_:)), forControlEvents: UIControlEvents.ValueChanged)
         view.addSubview(slider!)
-        txtStarValue = UITextField(frame: CGRect(x: 200, y: 175, width: 100, height: 30))
-        txtStarValue?.keyboardType = UIKeyboardType.DecimalPad
-        txtStarValue?.delegate = self;
+        
+        //setup text view used for set first star view's value
+        txtStarValue                    = UITextField(frame: CGRect(x: 230, y: 175, width: 100, height: 30))
+        txtStarValue?.keyboardType      = UIKeyboardType.DecimalPad
+        txtStarValue?.delegate          = self;
         txtStarValue?.layer.borderWidth = 0.5
+        txtStarValue?.placeholder       = "Set value"
         txtStarValue?.layer.borderColor = UIColor.redColor().CGColor
         view.addSubview(txtStarValue!)
         
-        let star2 = StarReview(frame: CGRect(x: 10, y: 220, width: 150, height: 70))
-        star2.starCount = 5
-        star2.value = 1
-        star2.allowAccruteStars = true
-        star2.starFillColor = UIColor.redColor()
+        //setup second star view
+        let star2                 = StarReview(frame: CGRect(x: 15, y: 250, width: 150, height: 70))
+        star2.starCount           = 5
+        star2.value               = 1
+        star2.allowAccruteStars   = true
+        star2.starFillColor       = UIColor.redColor()
         star2.starBackgroundColor = UIColor.blackColor()
-        star2.starMarginScale = 0.3
+        star2.starMarginScale     = 0.3
         view.addSubview(star2)
         
-        let star3 = StarReview(frame: CGRect(x: 150, y: 280, width: 150, height: 70))
-
-        star3.starCount = 5
-        star3.allowAccruteStars = true
-        star3.starMarginScale = 0.5
-        star3.value = 3.3
+        //setup third star view
+        let star3                 = StarReview(frame: CGRect(x: 15, y: 320, width: 150, height: 70))
+        star3.starCount           = 5
+        star3.allowAccruteStars   = true
+        star3.starMarginScale     = 0.5
+        star3.value               = 3.3
         star3.starBackgroundColor = UIColor.lightGrayColor()
-        star3.starFillColor = UIColor.orangeColor()
+        star3.starFillColor       = UIColor.orangeColor()
         view.addSubview(star3)
+        
+        //setup button for change star color
+        let btnBar = UIBarButtonItem(title: "换色", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(ViewController.changeColor))
+        navigationItem.rightBarButtonItem = btnBar
+        
+        //setup button for change star value between integer and non-integer.
+        btnBarLeft = UIBarButtonItem(title: "整数化", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(ViewController.inter))
+        navigationItem.leftBarButtonItem = btnBarLeft!
 
     }
 
-    
     func valueChange(sender:StarReview){
         slider?.value = sender.value
         lblStarLevel?.text = "分数值\(sender.value)"
@@ -101,10 +114,7 @@ class ViewController: UIViewController,UITextFieldDelegate {
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
-
-
 }
 
 
