@@ -149,6 +149,16 @@ public final class StarReview: UIControl {
         super.init(coder: aDecoder)
     }
     
+    init(){
+        super.init(frame: CGRect(x: 0, y: 0, width: 100, height: 30))
+        self.backgroundColor = UIColor.clearColor()
+        self.userInteractionEnabled = true
+        starRadius = Float(self.frame.size.height) - Float(layer.borderWidth * 2)
+        if ratio < startReviewWidthScale{
+            starRadius = Float(self.frame.width) / startReviewWidthScale - Float(layer.borderWidth * 2)
+        }
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = UIColor.clearColor()
