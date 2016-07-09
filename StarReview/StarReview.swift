@@ -97,7 +97,7 @@ public final class StarReview: UIControl {
     }
     
     private var starRadius:Float = 0.0; //表示Star的大小,其实也就是半径
-    private var target:AnyObject?
+    private weak var target:AnyObject?
     private var selector:Selector?
     private var event:UIControlEvents?
     
