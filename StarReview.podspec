@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "StarReview"
-  s.version      = "0.0.1"
+  s.version      = "0.0.3"
   s.summary      = "StarReview is a iOS rate tool. it use star to rate something"
 
   # This description is used to generate tags and improve search results.
@@ -80,7 +80,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "https://github.com/DuckDeck/StarReview.git", :tag => "0.0.1" }
+  s.source       = { :git => "https://github.com/DuckDeck/StarReview.git", :tag => "0.0.3" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
