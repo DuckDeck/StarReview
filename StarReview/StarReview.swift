@@ -14,12 +14,12 @@ public final class StarReview: UIControl {
             setNeedsDisplay()
         }
     }
-    public var starFillColor:UIColor = UIColor.blueColor(){ //星星的填充颜色
+    public var starFillColor:UIColor = UIColor.blue{ //星星的填充颜色
         didSet{
             setNeedsDisplay()
         }
     }
-  public var starBackgroundColor:UIColor = UIColor.grayColor(){
+  public var starBackgroundColor:UIColor = UIColor.gray{
         didSet{
             setNeedsDisplay()
         }
@@ -96,36 +96,36 @@ public final class StarReview: UIControl {
         }
     }
     
-    private var starRadius:Float = 0.0; //表示Star的大小,其实也就是半径
-    private weak var target:AnyObject?
-    private var selector:Selector?
-    private var event:UIControlEvents?
+    fileprivate var starRadius:Float = 0.0; //表示Star的大小,其实也就是半径
+    fileprivate weak var target:AnyObject?
+    fileprivate var selector:Selector?
+    fileprivate var event:UIControlEvents?
     
-    private var offsetX:Float{
+    fileprivate var offsetX:Float{
         get{
         //    return ratio > startReviewWidthScale ? Float(self.frame.width) / 2 - startReviewWidthScale / 2 * Float(self.frame.height) + Float(layer.borderWidth) : Float(layer.borderWidth)  //左边的空白处
             return ratio > startReviewWidthScale ? Float(self.frame.width) / 2 - startReviewWidthScale / 2 * Float(self.frame.height)  : 0.0  //左边的空白处
         }
     }
     
-    private var offsetY:Float{
+    fileprivate var offsetY:Float{
         get{
             return ratio < startReviewWidthScale ? (Float(self.frame.height)  - starRadius) / 2 : 0.0  //上面的空白处
         }
     }
     
-    private var ratio:Float{ //长宽比
+    fileprivate var ratio:Float{ //长宽比
         get{
             return Float(self.frame.width) / Float(self.frame.height)
         }
     }
-    private var startReviewWidthScale:Float{  //这个是5个星星们的长宽比.
+    fileprivate var startReviewWidthScale:Float{  //这个是5个星星们的长宽比.
         get {
             return Float(starCount) + Float((starCount - 1)) * starMarginScale
         }
     }
     
-    private var starPixelValue:Float = 0.0{
+    fileprivate var starPixelValue:Float = 0.0{
         didSet{
             if starPixelValue > Float(starCount){
                 starPixelValue = Float(starCount)
@@ -135,8 +135,8 @@ public final class StarReview: UIControl {
             }
             setNeedsDisplay()
             if target != nil && event != nil{
-                if event == UIControlEvents.ValueChanged{
-                    self.sendAction(selector!, to: target, forEvent: nil)
+                if event == UIControlEvents.valueChanged{
+                    self.sendAction(selector!, to: target, for: nil)
                 }
             }
             
@@ -151,8 +151,8 @@ public final class StarReview: UIControl {
     
     init(){
         super.init(frame: CGRect(x: 0, y: 0, width: 100, height: 30))
-        self.backgroundColor = UIColor.clearColor()
-        self.userInteractionEnabled = true
+        self.backgroundColor = UIColor.clear
+        self.isUserInteractionEnabled = true
         starRadius = Float(self.frame.size.height) - Float(layer.borderWidth * 2)
         if ratio < startReviewWidthScale{
             starRadius = Float(self.frame.width) / startReviewWidthScale - Float(layer.borderWidth * 2)
@@ -161,14 +161,14 @@ public final class StarReview: UIControl {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = UIColor.clearColor()
-        self.userInteractionEnabled = true
+        self.backgroundColor = UIColor.clear
+        self.isUserInteractionEnabled = true
         starRadius = Float(self.frame.size.height) - Float(layer.borderWidth * 2)
         if ratio < startReviewWidthScale{
             starRadius = Float(self.frame.width) / startReviewWidthScale - Float(layer.borderWidth * 2)
         }
     }
-    override public func drawRect(rect: CGRect) {
+    override public func draw(_ rect: CGRect) {
         //对于View的尺寸是有要求的,如果过长,那么5颗星排起来也排不满整个长度,如果太高的话,那么又占不了整个高度,如果一个星是正文形,长宽都是1的话,那么总长宽比可以是
         //所以可以计算一下应该取多少
         clipsToBounds = false
@@ -184,27 +184,27 @@ public final class StarReview: UIControl {
             let x = starMarginScale * Float(s) * starRadius + starRadius * (0.5 + Float(s))
             var starCenter = CGPoint(x: CGFloat(x), y: (self.frame.height) / 2) //第个星的中心
             if ratio > startReviewWidthScale{
-                starCenter = CGPointMake(CGFloat(x)+CGFloat(offsetX), self.frame.height / 2)
+                starCenter = CGPoint(x: CGFloat(x)+CGFloat(offsetX), y: self.frame.height / 2)
             }
             //print("第\(s)个星的中心x:\(starCenter.x) y:\(starCenter.y)")
             let radius = starRadius / 2 //半径
             //print("星圆的半径:\(radius)")
-            let p1 = CGPointMake(starCenter.x, starCenter.y - CGFloat(radius)) //
+            let p1 = CGPoint(x: starCenter.x, y: starCenter.y - CGFloat(radius)) //
             
-            CGContextSetFillColorWithColor(ctx, starBackgroundColor.CGColor)
-            CGContextSetStrokeColorWithColor(ctx, starBackgroundColor.CGColor)
-            CGContextSetLineCap(ctx, CGLineCap.Butt)
-            CGContextMoveToPoint(ctx, p1.x, p1.y)
+            ctx?.setFillColor(starBackgroundColor.cgColor)
+            ctx?.setStrokeColor(starBackgroundColor.cgColor)
+            ctx?.setLineCap(CGLineCap.butt)
+            ctx?.move(to: CGPoint(x: p1.x, y: p1.y))
             let angle = Float(4 * M_PI / 5)
             for i in 1...5{
                 let x = Float(starCenter.x) - sinf(angle * Float(i)) * Float(radius)
                 let y = Float(starCenter.y) - cosf(angle * Float(i)) * Float(radius)
-                CGContextAddLineToPoint(ctx, CGFloat(x), CGFloat(y))
+                ctx?.addLine(to: CGPoint(x: CGFloat(x), y: CGFloat(y)))
             }
-            CGContextDrawPath(ctx, CGPathDrawingMode.FillStroke)
+            ctx?.drawPath(using: CGPathDrawingMode.fillStroke)
         }
-        CGContextSetFillColorWithColor(ctx, starFillColor.CGColor)
-        CGContextSetBlendMode(ctx, CGBlendMode.SourceIn)
+        ctx?.setFillColor(starFillColor.cgColor)
+        ctx?.setBlendMode(CGBlendMode.sourceIn)
 //        print(offsetX)
 //        print(level)
 //        print(starValue)
@@ -212,12 +212,12 @@ public final class StarReview: UIControl {
 //        print(starLength)
 //        print(gapStarLengthScale * starLength)
             let temp = starRadius * ( 1 + starMarginScale) * starPixelValue
-           CGContextFillRect(ctx, CGRectMake(CGFloat(offsetX), CGFloat(offsetY), CGFloat(temp), CGFloat(starRadius)))
+           ctx?.fill(CGRect(x: CGFloat(offsetX), y: CGFloat(offsetY), width: CGFloat(temp), height: CGFloat(starRadius)))
     }
     
-    override public func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override public func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         if let touch:UITouch = touches.first{
-            let point = touch.locationInView(self)
+            let point = touch.location(in: self)
             let temp = (Float(point.x) - offsetX) / (starRadius * ( 1 + starMarginScale))
             if allowAccruteStars{
                  starPixelValue = temp
@@ -229,13 +229,13 @@ public final class StarReview: UIControl {
         }
     }
     
-    override public func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override public func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if !allowEdit
         {
             return
         }
         if let touch:UITouch = touches.first{
-            let point = touch.locationInView(self)
+            let point = touch.location(in: self)
             let temp = (Float(point.x) - offsetX) / (starRadius * ( 1 + starMarginScale))
             if allowAccruteStars{
                starPixelValue = temp
@@ -246,13 +246,13 @@ public final class StarReview: UIControl {
            // print("starPicelValue:\(starPixelValue)")
         }
     }
-    override public func addTarget(target: AnyObject?, action: Selector, forControlEvents controlEvents: UIControlEvents) {
-        self.target = target
+    override public func addTarget(_ target: Any?, action: Selector, for controlEvents: UIControlEvents) {
+        self.target = target as AnyObject?
         self.selector = action
         self.event = controlEvents
     }
     
-    private func getStarIndex()->(Int,Int){  //判断坐标在第几个星上,如果不在星上,返回在第几个间隙上
+    fileprivate func getStarIndex()->(Int,Int){  //判断坐标在第几个星上,如果不在星上,返回在第几个间隙上
         let i = Int(starPixelValue)
         if  starPixelValue - Float(i) <= 1 / (1 + starMarginScale)
         {

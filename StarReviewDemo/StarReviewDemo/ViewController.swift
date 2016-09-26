@@ -17,7 +17,7 @@ class ViewController: UIViewController,UITextFieldDelegate {
     var colors = UIColor.allStarColor()
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor.whiteColor()
+        view.backgroundColor = UIColor.white
         
         //setup first star view
         star                    = StarReview(frame: CGRect(x: 15, y: 100, width: 200, height: 50))
@@ -25,29 +25,29 @@ class ViewController: UIViewController,UITextFieldDelegate {
         star!.value             = 2
         star?.starCount         = 6
         star?.allowAccruteStars = true
-        star!.addTarget(self, action: #selector(ViewController.valueChange(_:)), forControlEvents: UIControlEvents.ValueChanged)
+        star!.addTarget(self, action: #selector(ViewController.valueChange(_:)), for: UIControlEvents.valueChanged)
         view.addSubview(star!)
         
         //setup lable for present first star view's value
         lblStarLevel            = UILabel(frame: CGRect(x: 0, y: 180, width: 200, height: 20))
-        lblStarLevel?.textColor = UIColor.blackColor()
+        lblStarLevel?.textColor = UIColor.black
         lblStarLevel?.text      = "分数值\(star!.value)"
         view.addSubview(lblStarLevel!)
         
         //setup slider which work in coordination with first star view
-        slider               = UISlider(frame: CGRect(x: 0, y: 200, width: UIScreen.mainScreen().bounds.width, height: 50))
+        slider               = UISlider(frame: CGRect(x: 0, y: 200, width: UIScreen.main.bounds.width, height: 50))
         slider?.maximumValue = Float(star!.starCount)
         slider?.minimumValue = 0
-        slider?.addTarget(self, action: #selector(ViewController.sliderChangeValue(_:)), forControlEvents: UIControlEvents.ValueChanged)
+        slider?.addTarget(self, action: #selector(ViewController.sliderChangeValue(_:)), for: UIControlEvents.valueChanged)
         view.addSubview(slider!)
         
         //setup text view used for set first star view's value
         txtStarValue                    = UITextField(frame: CGRect(x: 230, y: 175, width: 100, height: 30))
-        txtStarValue?.keyboardType      = UIKeyboardType.DecimalPad
+        txtStarValue?.keyboardType      = UIKeyboardType.decimalPad
         txtStarValue?.delegate          = self;
         txtStarValue?.layer.borderWidth = 0.5
         txtStarValue?.placeholder       = "Set value"
-        txtStarValue?.layer.borderColor = UIColor.redColor().CGColor
+        txtStarValue?.layer.borderColor = UIColor.red.cgColor
         view.addSubview(txtStarValue!)
         
         //setup second star view
@@ -55,8 +55,8 @@ class ViewController: UIViewController,UITextFieldDelegate {
         star2.starCount           = 5
         star2.value               = 1
         star2.allowAccruteStars   = true
-        star2.starFillColor       = UIColor.redColor()
-        star2.starBackgroundColor = UIColor.blackColor()
+        star2.starFillColor       = UIColor.red
+        star2.starBackgroundColor = UIColor.black
         star2.starMarginScale     = 0.3
         view.addSubview(star2)
         
@@ -66,21 +66,21 @@ class ViewController: UIViewController,UITextFieldDelegate {
         star3.allowAccruteStars   = true
         star3.starMarginScale     = 0.5
         star3.value               = 3.3
-        star3.starBackgroundColor = UIColor.lightGrayColor()
-        star3.starFillColor       = UIColor.orangeColor()
+        star3.starBackgroundColor = UIColor.lightGray
+        star3.starFillColor       = UIColor.orange
         view.addSubview(star3)
         
         //setup button for change star color
-        let btnBar = UIBarButtonItem(title: "换色", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(ViewController.changeColor))
+        let btnBar = UIBarButtonItem(title: "换色", style: UIBarButtonItemStyle.plain, target: self, action: #selector(ViewController.changeColor))
         navigationItem.rightBarButtonItem = btnBar
         
         //setup button for change star value between integer and non-integer.
-        btnBarLeft = UIBarButtonItem(title: "整数化", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(ViewController.inter))
+        btnBarLeft = UIBarButtonItem(title: "整数化", style: UIBarButtonItemStyle.plain, target: self, action: #selector(ViewController.inter))
         navigationItem.leftBarButtonItem = btnBarLeft!
 
     }
 
-    func valueChange(sender:StarReview){
+    func valueChange(_ sender:StarReview){
         slider?.value = sender.value
         lblStarLevel?.text = "分数值\(sender.value)"
     }
@@ -90,7 +90,7 @@ class ViewController: UIViewController,UITextFieldDelegate {
         star!.starFillColor = colors[index]
     }
     
-    func sliderChangeValue(sender:UISlider){
+    func sliderChangeValue(_ sender:UISlider){
         print("SliderValue:\(sender.value)")
         star!.value = sender.value
     }
@@ -100,15 +100,15 @@ class ViewController: UIViewController,UITextFieldDelegate {
         btnBarLeft?.title = star!.allowAccruteStars ? "非整数化" : "整数化"
     }
     
-    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
-        if let value:NSString = textField.text{
+        if let value:NSString = textField.text as NSString?{
             star?.value = value.floatValue
         }
         return true
     }
     
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         txtStarValue?.resignFirstResponder()
     }
     
@@ -120,19 +120,19 @@ class ViewController: UIViewController,UITextFieldDelegate {
 
 extension UIColor {
     static func allStarColor()->[UIColor]{
-        return [UIColor.redColor(),UIColor.blackColor(),UIColor.blueColor(),UIColor.brownColor(),UIColor.whiteColor(),UIColor.orangeColor(),UIColor.purpleColor(),UIColor.grayColor(),UIColor.lightGrayColor(),UIColor.lightTextColor(),UIColor.darkGrayColor(),UIColor.darkTextColor(),UIColor.cyanColor(),UIColor.yellowColor(),UIColor.magentaColor(),UIColor.clearColor()]
+        return [UIColor.red,UIColor.black,UIColor.blue,UIColor.brown,UIColor.white,UIColor.orange,UIColor.purple,UIColor.gray,UIColor.lightGray,UIColor.lightText,UIColor.darkGray,UIColor.darkText,UIColor.cyan,UIColor.yellow,UIColor.magenta,UIColor.clear]
     }
-    static  func starColorFromString(color:String)->UIColor{
-        var colorString = (color as NSString).stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()).uppercaseString as NSString
+    static  func starColorFromString(_ color:String)->UIColor{
+        var colorString = (color as NSString).trimmingCharacters(in: NSCharacterSet.whitespacesAndNewlines).uppercased() as NSString
         if colorString.length < 3{
-            return UIColor.clearColor()
+            return UIColor.clear
         }
         if colorString.hasPrefix("0X"){
-            colorString = colorString.substringFromIndex(2)
+            colorString = colorString.substring(from: 2) as NSString
         }
         if colorString.hasPrefix("#")
         {
-            colorString = colorString.substringFromIndex(1)
+            colorString = colorString.substring(from: 1) as NSString
         }
         var alpha:CGFloat = 1.0
         var red:CGFloat = 0
@@ -158,16 +158,16 @@ extension UIColor {
             green = starColorComponentFrom(colorString, start: 4, length: 2)
             blue = starColorComponentFrom(colorString, start: 6, length: 2)
             
-        default: return UIColor.clearColor()
+        default: return UIColor.clear
         }
         return UIColor(red: red, green: green, blue: blue, alpha: alpha)
     }
 }
-func starColorComponentFrom(str:NSString,start:UInt,length:UInt)->CGFloat{
-    let subStr = str.substringWithRange(NSMakeRange(Int(start), Int(length)))
-    let fullHex = length == 2 ? subStr: NSString(format: "%@%@", subStr,subStr)
-    let hexComponent:UnsafeMutablePointer<UInt32> =  nil
-    NSScanner(string: fullHex as String).scanHexInt(hexComponent)
-    return CGFloat(hexComponent.memory as UInt32) / CGFloat(255.0)
+func starColorComponentFrom(_ str:NSString,start:UInt,length:UInt)->CGFloat{
+    let subStr = str.substring(with: NSMakeRange(Int(start), Int(length)))
+    let fullHex = length == 2 ? subStr: NSString(format: "%@%@", subStr,subStr) as String
+    let hexComponent:UnsafeMutablePointer<UInt32>? =  nil
+    Scanner(string: fullHex as String).scanHexInt32(hexComponent)
+    return CGFloat(hexComponent!.pointee as UInt32) / CGFloat(255.0)
 }
 
