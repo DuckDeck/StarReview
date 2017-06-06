@@ -195,7 +195,7 @@ public final class StarReview: UIControl {
             ctx?.setStrokeColor(starBackgroundColor.cgColor)
             ctx?.setLineCap(CGLineCap.butt)
             ctx?.move(to: CGPoint(x: p1.x, y: p1.y))
-            let angle = Float(4 * M_PI / 5)
+            let angle = Float(4 * Double.pi / 5)
             for i in 1...5{
                 let x = Float(starCenter.x) - sinf(angle * Float(i)) * Float(radius)
                 let y = Float(starCenter.y) - cosf(angle * Float(i)) * Float(radius)
