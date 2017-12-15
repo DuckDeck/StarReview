@@ -1,5 +1,4 @@
 # StarReview
-=== 
 
 ## 【StarReview是一个IOS打分工具，用星星来给某些东西打分】
 
@@ -13,7 +12,7 @@
 * **改变星的值时会触发事件，当你为它添加target action时**
 
 ## 【系统需要】
-???
+兼容iOS 8 以上
 
 ## 【安装】
 + **如果你想用Cocoapods,那再pod 'StarReview' 就行**
