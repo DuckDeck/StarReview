@@ -19,7 +19,7 @@
 + **如果你想使用文件 直接拷贝StarReview.swift文件到你的项目里面就行**
 <br>
 
-##【怎么使用】
+## 【怎么使用】
 **请参考下面的代码**
 ```swift
 let star = StarReview(frame: CGRect(x: 15, y: 100, width: 200, height: 50)) //init the StarReview
