@@ -1,5 +1,7 @@
 # StarReview
 
+###更新到swift4.2
+
 ## 【StarReview是一个IOS打分工具，用星星来给某些东西打分】
 
 【StarReview是一个强大的IOS UI 工具他继承了UIControl 并提供了可定制的包含可打分星星的VIew.】
