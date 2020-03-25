@@ -99,7 +99,7 @@ public final class StarReview: UIControl {
     fileprivate var starRadius:Float = 0.0; //表示Star的大小,其实也就是半径
     fileprivate weak var target:AnyObject?
     fileprivate var selector:Selector?
-    fileprivate var event:UIControlEvents?
+    fileprivate var event:UIControl.Event?
     
     fileprivate var offsetX:Float{
         get{
@@ -135,7 +135,7 @@ public final class StarReview: UIControl {
             }
             setNeedsDisplay()
             if target != nil && event != nil{
-                if event == UIControlEvents.valueChanged{
+                if event == UIControl.Event.valueChanged{
                     self.sendAction(selector!, to: target, for: nil)
                 }
             }
@@ -246,7 +246,7 @@ public final class StarReview: UIControl {
            // print("starPicelValue:\(starPixelValue)")
         }
     }
-    override public func addTarget(_ target: Any?, action: Selector, for controlEvents: UIControlEvents) {
+    override public func addTarget(_ target: Any?, action: Selector, for controlEvents: UIControl.Event) {
         self.target = target as AnyObject?
         self.selector = action
         self.event = controlEvents

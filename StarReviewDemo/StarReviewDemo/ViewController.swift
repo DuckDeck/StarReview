@@ -25,7 +25,7 @@ class ViewController: UIViewController,UITextFieldDelegate {
         star!.value             = 2
         star?.starCount         = 6
         star?.allowAccruteStars = true
-        star!.addTarget(self, action: #selector(ViewController.valueChange(_:)), for: UIControlEvents.valueChanged)
+        star!.addTarget(self, action: #selector(ViewController.valueChange(_:)), for: UIControl.Event.valueChanged)
         view.addSubview(star!)
         
         //setup lable for present first star view's value
@@ -38,7 +38,7 @@ class ViewController: UIViewController,UITextFieldDelegate {
         slider               = UISlider(frame: CGRect(x: 0, y: 200, width: UIScreen.main.bounds.width, height: 50))
         slider?.maximumValue = Float(star!.starCount)
         slider?.minimumValue = 0
-        slider?.addTarget(self, action: #selector(ViewController.sliderChangeValue(_:)), for: UIControlEvents.valueChanged)
+        slider?.addTarget(self, action: #selector(ViewController.sliderChangeValue(_:)), for: UIControl.Event.valueChanged)
         view.addSubview(slider!)
         
         //setup text view used for set first star view's value
@@ -71,31 +71,31 @@ class ViewController: UIViewController,UITextFieldDelegate {
         view.addSubview(star3)
         
         //setup button for change star color
-        let btnBar = UIBarButtonItem(title: "换色", style: UIBarButtonItemStyle.plain, target: self, action: #selector(ViewController.changeColor))
+        let btnBar = UIBarButtonItem(title: "换色", style: UIBarButtonItem.Style.plain, target: self, action: #selector(ViewController.changeColor))
         navigationItem.rightBarButtonItem = btnBar
         
         //setup button for change star value between integer and non-integer.
-        btnBarLeft = UIBarButtonItem(title: "整数化", style: UIBarButtonItemStyle.plain, target: self, action: #selector(ViewController.inter))
+        btnBarLeft = UIBarButtonItem(title: "整数化", style: UIBarButtonItem.Style.plain, target: self, action: #selector(ViewController.inter))
         navigationItem.leftBarButtonItem = btnBarLeft!
 
     }
 
-    func valueChange(_ sender:StarReview){
+    @objc func valueChange(_ sender:StarReview){
         slider?.value = sender.value
         lblStarLevel?.text = "分数值\(sender.value)"
     }
     
-    func changeColor(){
+    @objc func changeColor(){
         let index = Int(arc4random()) % colors.count
         star!.starFillColor = colors[index]
     }
     
-    func sliderChangeValue(_ sender:UISlider){
+    @objc func sliderChangeValue(_ sender:UISlider){
         print("SliderValue:\(sender.value)")
         star!.value = sender.value
     }
     
-    func inter(){
+    @objc func inter(){
         star?.allowAccruteStars = !star!.allowAccruteStars
         btnBarLeft?.title = star!.allowAccruteStars ? "非整数化" : "整数化"
     }
